@@ -4,7 +4,7 @@ using ll = long long;
 using namespace std;
 
 ll testCnt, x, y, n;
-ll i, j;
+ll i, j, k;
 void fastIO() {
     cin.tie(NULL); ios::sync_with_stdio(false);
 }
