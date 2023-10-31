@@ -1,65 +1,52 @@
 #include <bits/stdc++.h>
+#define MAX 1010
 using namespace std;
-
-int i, j;
 using ll = long long;
+using ld = long double;
 
-class modN {
-    ll x, static int mod;
-    
-public : 
-    static void setMod(int m) { mod = m; }
-    modN(ll x = 0) : x((x + mod + mod) % mod) {}
-    
-    int getVal() const{ return x; } 
-    modN &operator+=(const modN &a) {
-        if((x += a.getVal()) >= mod) { x -= mod; }
-        return *this;
-    }
-    
-    modN &operator-=(const modN &a) {
-        if((x += mod - a.getVal()) >= mod) { x -= mod; }
-        return *this;
-    }
-    
-    modN &operator*=(const modN &a) {
-        (x *= a.getVal()) %= mod;
-        return *this;
-    }
-    
-    modN operator+(const modN &a) const {
-        modN ret(*this); return ret += a;
-    }
-    
-    modN operator-(const modN &a) const {
-        modN ret(*this); return ret -= a;
-    }
-    
-    modN operator*(const mint &a) const {
-        modN ret(*this); return ret *= a;
-    }
-    
-    modN getPow(ll idx) const {
-        modN ret = 1, val(*this);
-        while(idx) {
-            if(idx & 1) { ret *= val; }
-            idx >>= 1;
-            val *= val;
-        }
-        return ret;
-    }
-    
-    modN inv() const { return getPow(mod-2); }
+const ll mod = 1e9+7;
+ll n;
+void fastIO() {
+    cin.tie(0); ios::sync_with_stdio(false);
 }
 
-int modN::mod = 0;
+ll getAdd(ll a, ll b) {
+    return (a + b) % mod;
+}
 
-void fastIO() {
-    ios::sync_with_stdio(false); cin.tie(0);
+ll getMul(ll a, ll b) {
+    return ((a % mod) * (b % mod)) % mod;
+}
+
+ll getPow(ll num, ll idx) {
+    ll res = 1;
+    while(idx) {
+        if(idx & 1) res = getMul(res, num);
+        num = getMul(num, num);
+        idx >>= 1;
+    }
+    return res;
+}
+
+ll getInv(ll num) {
+    return getPow(num, mod - 2);
+}
+
+ll getComb(ll a, ll b) {
+    if(b == 0) {return 1;}
+    
+    ll u, d;
+    u=d=1;
+    for(j=0; j<b; j++) {
+        u = getMul(u, a - j);
+        d = getMul(d, j+1);
+    }
+    d = getInv(d);
+    return getMul(u, d);
 }
 
 void input() {
-    
+    cin>>n;
 }
 
 void solve() {
@@ -69,6 +56,6 @@ void solve() {
 int main() {
     fastIO();
     input();
-    solve();    
+    solve();
     return 0;
 }
