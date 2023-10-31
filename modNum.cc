@@ -18,6 +18,12 @@ ll getMul(ll a, ll b) {
     return ((a % mod) * (b % mod)) % mod;
 }
 
+ll getSub(ll a, ll b) {
+    ll ret = a-b;
+    while(ret < 0) { ret += mod; }
+    return ret;
+}
+
 ll getPow(ll num, ll idx) {
     ll res = 1;
     while(idx) {
