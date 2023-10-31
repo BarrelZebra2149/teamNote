@@ -43,7 +43,7 @@ ll getComb(ll a, ll b) {
     
     ll u, d;
     u=d=1;
-    for(j=0; j<b; j++) {
+    for(int j=0; j<b; j++) {
         u = getMul(u, a - j);
         d = getMul(d, j+1);
     }
