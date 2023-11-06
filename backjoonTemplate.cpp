@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #define MAX 100000
-#define INF 987654321
 using namespace std;
 using ll = long long;
+const ll INF = 1e18 + 7;
 
 int n, m;
 void fastIO() {
